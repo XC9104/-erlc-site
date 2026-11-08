@@ -13,8 +13,11 @@ h1{font-size:30px;color:#38bdf8;margin:0 0 6px;line-height:1.3;}
 p{font-size:18px;line-height:1.9;max-width:680px;margin:0 auto 28px;color:#e2e8f0;}
 .btn{display:inline-block;padding:14px 44px;background:#2563eb;color:#fff;border-radius:10px;text-decoration:none;font-size:18px;font-weight:600;cursor:pointer;border:none;}
 .btn:active{background:#1d4ed8;}
-.player{display:none;max-width:680px;margin:28px auto 0;aspect-ratio:16/9;border-radius:12px;overflow:hidden;}
-.player iframe{width:100%;height:100%;border:0;}
+.form{display:none;max-width:680px;margin:28px auto 0;text-align:left;}
+.form label{display:block;font-size:15px;color:#94a3b8;margin:16px 0 6px;}
+.form textarea,.form input{width:100%;padding:12px;border-radius:10px;border:1px solid #334155;background:#1e293b;color:#fff;font-size:16px;}
+.form textarea{min-height:120px;resize:vertical;}
+.form .submit{margin-top:20px;width:100%;}
 .foot{margin-top:40px;font-size:13px;color:#64748b;}
 </style>
 </head>
@@ -23,10 +26,23 @@ p{font-size:18px;line-height:1.9;max-width:680px;margin:0 auto 28px;color:#e2e8f
 <h1>加利福尼亚洛杉矶南区</h1>
 <div class="tag">NLARP</div>
 <p>本服为洛杉矶南区，简称“NLARP”。<br>我们拥有专业化的 LEO 团队以及常驻管理组，为你带来沉浸式的紧急响应角色扮演体验。</p>
-<button class="btn" onclick="document.getElementById('pv').style.display='block';this.style.display='none';document.getElementById('pv').scrollIntoView({behavior:'smooth'});">进入网页</button>
-<div class="player" id="pv">
-<iframe src="https://player.bilibili.com/player.html?bvid=BV1bfHx65EvH&autoplay=1&high_quality=1&danmaku=0" allowfullscreen="allowfullscreen"></iframe>
+<button class="btn" onclick="document.getElementById('fb').style.display='block';this.style.display='none';document.getElementById('fb').scrollIntoView({behavior:'smooth'});">点击反馈</button>
+<div class="form" id="fb">
+<label>问题反馈</label>
+<textarea id="msg" placeholder="请描述你遇到的问题或建议…"></textarea>
+<label>联系方式（选填）</label>
+<input id="contact" placeholder="QQ / 微信 / 邮箱">
+<button class="btn submit" onclick="sendFb()">提交反馈</button>
 </div>
 <div class="foot">NLARP · Los Angeles South District Roleplay</div>
+<script>
+function sendFb(){
+  var msg=document.getElementById('msg').value.trim();
+  if(!msg){alert('请先填写问题反馈内容');return;}
+  var c=document.getElementById('contact').value.trim();
+  var body='【NLARP 问题反馈】\n\n'+msg+'\n\n联系方式：'+(c||'未填写');
+  location.href='mailto:18526031095@163.com?subject='+encodeURIComponent('【NLARP】问题反馈')+'&body='+encodeURIComponent(body);
+}
+</script>
 </body>
 </html>
